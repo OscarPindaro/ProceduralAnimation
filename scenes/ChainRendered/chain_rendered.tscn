@@ -1,3 +1,17 @@
 [gd_scene format=3 uid="uid://df2e672lagoed"]
 
+[ext_resource type="Script" uid="uid://bq6fnghwgd1f7" path="res://scenes/ChainRendered/chain_rendered.gd" id="1_4wqok"]
+
+[sub_resource type="Curve" id="Curve_4wqok"]
+_data = [Vector2(0, 0.49778342), 0.0, 0.0, 0, 0, Vector2(0.24869111, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.19727677), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="ChainRendered" type="Node2D" unique_id=453087093]
+script = ExtResource("1_4wqok")
+is_soft = true
+use_catmull_rom = true
+number_of_points = 10
+distance = 80.0
+point_thickness = 40.0
+use_thickness_curve = true
+thickness_curve = SubResource("Curve_4wqok")
