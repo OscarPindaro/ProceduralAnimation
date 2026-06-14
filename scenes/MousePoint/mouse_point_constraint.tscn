@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://clijvqvh2neau"]
+
+[ext_resource type="Script" uid="uid://bbcsdcb07m40a" path="res://scenes/MousePoint/mouse_point_constraint.gd" id="1_q63d7"]
+
+[node name="MousePointConstraint" type="Node2D" unique_id=1658297961]
+script = ExtResource("1_q63d7")
+is_soft = true
+do_draw = true
+distance = 100.0
+point_thickness = 10.0

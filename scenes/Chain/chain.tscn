@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bi1w0rl0mayit"]
+
+[ext_resource type="Script" uid="uid://cv1f7kuf0sffp" path="res://scenes/Chain/chain.gd" id="1_f8o53"]
+
+[node name="Chain" type="Node2D" unique_id=1865768968]
+script = ExtResource("1_f8o53")
+number_of_points = 10
+distance = 25.0
+point_thickness = 20.0
