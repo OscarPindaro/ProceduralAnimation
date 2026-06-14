@@ -1,6 +1,9 @@
 extends Node2D
 
+@export_group("algorithm parameters")
 @export var is_soft: bool = false
+@export var check_collisions: bool = false
+@export_group("chain properties")
 @export var do_draw: bool = true
 @export var number_of_points: int = 5
 @export var points: Array[Vector2] = []
@@ -30,6 +33,9 @@ func _process(_delta: float) -> void:
 		else:
 			self.points[idx] = Constraints.constrain_distance(self.points[idx], self.points[idx-1], self.distance)
 	self.queue_redraw()
+
+	if check_collisions:
+		self.points = Constraints.constraint_circle_collision_all(self.points, self.point_thickness)
 
 func _draw() -> void:
 	if do_draw:
