@@ -31,13 +31,23 @@ static func constrain_circle_collision(point1: Vector2, point2: Vector2, radius:
 static func constraint_circle_collision_all(points: Array[Vector2], radius: float)-> Array[Vector2]:
 	# computes all the collision constraints of some points with the same radius
 	for i in range(len(points)):
-		for j in range(i, len(points)):
+		for j in range(i+1, len(points)):
 			var new_points: Array[Vector2] = constrain_circle_collision(points[i], points[j], radius)
 			assert(len(new_points) == 2)
 			points[i] = new_points[0]
 			points[j] = new_points[1]
 	return points
 
+
+static func asimmetric_circle_collision(points: Array[Vector2], radius: float)-> Array[Vector2]:
+	# balls that are closer to the head (idx=0) don't move
+	for i in range(len(points)):
+		for j in range(i+1, len(points)):
+			if check_circle_collision(points[i], points[j], radius):
+				# move only the second point, therefore point[i] is the anchor that does not move
+				# i want to move the first one i pass
+				points[j] = constrain_distance(points[j], points[i], radius)
+	return points
 
 
 

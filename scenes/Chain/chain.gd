@@ -25,17 +25,35 @@ func set_point(source: Vector2, target: Vector2):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	self.mouse_pos = get_local_mouse_position()
-	self.points[0] = set_point(self.points[0], self.mouse_pos)
-	for idx in range(1,len(self.points)):
-		if self.is_soft:
-			self.points[idx] = Constraints.soft_constrain_distance(self.points[idx], self.points[idx-1], self.distance)
-		else:
-			self.points[idx] = Constraints.constrain_distance(self.points[idx], self.points[idx-1], self.distance)
-	self.queue_redraw()
+	if not check_collisions:
+		self.mouse_pos = get_local_mouse_position()
+		self.points[0] = set_point(self.points[0], self.mouse_pos)
+		for idx in range(1,len(self.points)):
+			if self.is_soft:
+				self.points[idx] = Constraints.soft_constrain_distance(self.points[idx], self.points[idx-1], self.distance)
+			else:
+				self.points[idx] = Constraints.constrain_distance(self.points[idx], self.points[idx-1], self.distance)
 
-	if check_collisions:
-		self.points = Constraints.constraint_circle_collision_all(self.points, self.point_thickness)
+	else:
+		for xxx in range(4):
+			self.mouse_pos = get_local_mouse_position()
+			self.points[0] = set_point(self.points[0], self.mouse_pos)
+			for idx in range(1,len(self.points)):
+				if self.is_soft:
+					self.points[idx] = Constraints.soft_constrain_distance(self.points[idx], self.points[idx-1], self.distance)
+				else:
+					self.points[idx] = Constraints.constrain_distance(self.points[idx], self.points[idx-1], self.distance)
+
+			self.points = Constraints.asimmetric_circle_collision(self.points, self.distance)
+			self.mouse_pos = get_local_mouse_position()
+			self.points[0] = set_point(self.points[0], self.mouse_pos)
+			for idx in range(1,len(self.points)):
+				if self.is_soft:
+					self.points[idx] = Constraints.soft_constrain_distance(self.points[idx], self.points[idx-1], self.distance)
+				else:
+					self.points[idx] = Constraints.constrain_distance(self.points[idx], self.points[idx-1], self.distance)
+
+	self.queue_redraw()
 
 func _draw() -> void:
 	if do_draw:
