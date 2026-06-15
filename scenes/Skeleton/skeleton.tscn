@@ -14,40 +14,40 @@ metadata/_edit_group_ = true
 [node name="Neck" type="Node2D" parent="Joints" unique_id=204172225]
 position = Vector2(0, 30)
 
-[node name="RightShoulder" type="Node2D" parent="Joints" unique_id=1274720705]
+[node name="LeftShoulder" type="Node2D" parent="Joints" unique_id=1274720705]
 position = Vector2(30, 30)
 
-[node name="RightElbow" type="Node2D" parent="Joints" unique_id=2142063420]
+[node name="LeftElbow" type="Node2D" parent="Joints" unique_id=2142063420]
 position = Vector2(30, 65)
 
-[node name="RightHand" type="Node2D" parent="Joints" unique_id=687646648]
+[node name="LeftHand" type="Node2D" parent="Joints" unique_id=687646648]
 position = Vector2(30, 100)
 
-[node name="LeftShoulder" type="Node2D" parent="Joints" unique_id=155079694]
+[node name="RightShoulder" type="Node2D" parent="Joints" unique_id=155079694]
 position = Vector2(-30, 30)
 
-[node name="LeftElbow" type="Node2D" parent="Joints" unique_id=432267669]
+[node name="RightElbow" type="Node2D" parent="Joints" unique_id=432267669]
 position = Vector2(-30, 65)
 
-[node name="LeftHand" type="Node2D" parent="Joints" unique_id=359966966]
+[node name="RightHand" type="Node2D" parent="Joints" unique_id=359966966]
 position = Vector2(-30, 100)
 
-[node name="RightHip" type="Node2D" parent="Joints" unique_id=1026478870]
+[node name="LeftHip" type="Node2D" parent="Joints" unique_id=1026478870]
 position = Vector2(17, 107)
 
-[node name="RightKnee" type="Node2D" parent="Joints" unique_id=1155573637]
+[node name="LeftKnee" type="Node2D" parent="Joints" unique_id=1155573637]
 position = Vector2(17, 142)
 
-[node name="RightFoot" type="Node2D" parent="Joints" unique_id=144408529]
+[node name="LeftFoot" type="Node2D" parent="Joints" unique_id=144408529]
 position = Vector2(17, 177)
 
-[node name="LeftHip" type="Node2D" parent="Joints" unique_id=71416142]
+[node name="RightHip" type="Node2D" parent="Joints" unique_id=71416142]
 position = Vector2(-17, 107)
 
-[node name="LeftKnee" type="Node2D" parent="Joints" unique_id=1880081685]
+[node name="RightKnee" type="Node2D" parent="Joints" unique_id=1880081685]
 position = Vector2(-16, 142)
 
-[node name="LeftFoot" type="Node2D" parent="Joints" unique_id=1111180315]
+[node name="RightFoot" type="Node2D" parent="Joints" unique_id=1111180315]
 position = Vector2(-17, 177)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=724248063]

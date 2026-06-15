@@ -88,7 +88,7 @@ func joints_with_colors() -> Dictionary:
 		left_foot:      COLOR_LEFT_FOOT,
 	}
 
-func _draw():
+func _draw_skeleton():
 	var joints = all_joints()
 	var coloured_joints: Dictionary = joints_with_colors()
 	for joint in joints:
@@ -107,3 +107,7 @@ func _draw():
 	draw_line(left_hip.position, left_knee.position, COLOR_SEG_LEFT_UPPER_LEG, segment_width)
 	draw_line(right_knee.position, right_foot.position, COLOR_SEG_RIGHT_LOWER_LEG, segment_width)
 	draw_line(left_knee.position, left_foot.position, COLOR_SEG_LEFT_LOWER_LEG, segment_width)
+
+func _draw():
+	_draw_skeleton()
+	
