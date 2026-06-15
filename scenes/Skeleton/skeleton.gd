@@ -4,7 +4,7 @@ class_name Skeleton
 @export_group("Skeleton Debug")
 @export var joint_radius: float = 5
 @export var segment_width: float = 2
-
+@export var draw_segments_as_ellipses: bool = false
 
 
 # Joint Nodes
@@ -26,39 +26,36 @@ class_name Skeleton
 # ─────────────────────────────────────────
 # Joint Colors (OpenPose COCO 18 - points)
 # ─────────────────────────────────────────
-# Your skeleton uses: neck(1), shoulders(2,5), elbows(3,6),
-# wrists/hands(4,7), hips(8,11), knees(9,12), ankles/feet(10,13)
-
-const COLOR_NECK            = Color(1.000, 0.333, 0.000)  # #FF5500  joint 1
-const COLOR_RIGHT_SHOULDER  = Color(1.000, 0.667, 0.000)  # #FFAA00  joint 2
-const COLOR_RIGHT_ELBOW     = Color(1.000, 1.000, 0.000)  # #FFFF00  joint 3
-const COLOR_RIGHT_HAND      = Color(0.667, 1.000, 0.000)  # #AAFF00  joint 4
-const COLOR_LEFT_SHOULDER   = Color(0.333, 1.000, 0.000)  # #55FF00  joint 5
-const COLOR_LEFT_ELBOW      = Color(0.000, 1.000, 0.000)  # #00FF00  joint 6
-const COLOR_LEFT_HAND       = Color(0.000, 1.000, 0.333)  # #00FF55  joint 7
-const COLOR_RIGHT_HIP       = Color(0.000, 1.000, 0.667)  # #00FFAA  joint 8
-const COLOR_RIGHT_KNEE      = Color(0.000, 1.000, 1.000)  # #00FFFF  joint 9
-const COLOR_RIGHT_FOOT      = Color(0.000, 0.667, 1.000)  # #00AAFF  joint 10
-const COLOR_LEFT_HIP        = Color(0.000, 0.333, 1.000)  # #0055FF  joint 11
-const COLOR_LEFT_KNEE       = Color(0.000, 0.000, 1.000)  # #0000FF  joint 12
-const COLOR_LEFT_FOOT       = Color(0.333, 0.000, 1.000)  # #5500FF  joint 13
+const COLOR_NECK            = Color("#FF5500")  # joint 1
+const COLOR_RIGHT_SHOULDER  = Color("#FFAA00")  # joint 2
+const COLOR_RIGHT_ELBOW     = Color("#FFFF00")  # joint 3
+const COLOR_RIGHT_HAND      = Color("#AAFF00")  # joint 4
+const COLOR_LEFT_SHOULDER   = Color("#55FF00")  # joint 5
+const COLOR_LEFT_ELBOW      = Color("#00FF00")  # joint 6
+const COLOR_LEFT_HAND       = Color("#00FF55")  # joint 7
+const COLOR_RIGHT_HIP       = Color("#00FFAA")  # joint 8
+const COLOR_RIGHT_KNEE      = Color("#00FFFF")  # joint 9
+const COLOR_RIGHT_FOOT      = Color("#00AAFF")  # joint 10
+const COLOR_LEFT_HIP        = Color("#0055FF")  # joint 11
+const COLOR_LEFT_KNEE       = Color("#0000FF")  # joint 12
+const COLOR_LEFT_FOOT       = Color("#5500FF")  # joint 13
 
 # ─────────────────────────────────────────
 # Segment / Bone Colors (OpenPose COCO 18 - lines, 60% shade)
 # ─────────────────────────────────────────
-const COLOR_SEG_RIGHT_SHOULDERBLADE = Color(0.600, 0.000, 0.000)  # #990000  pair 1,2
-const COLOR_SEG_LEFT_SHOULDERBLADE  = Color(0.600, 0.200, 0.000)  # #993300  pair 1,5
-const COLOR_SEG_RIGHT_ARM           = Color(0.600, 0.400, 0.000)  # #996600  pair 2,3
-const COLOR_SEG_RIGHT_FOREARM       = Color(0.600, 0.600, 0.000)  # #999900  pair 3,4
-const COLOR_SEG_LEFT_ARM            = Color(0.400, 0.600, 0.000)  # #669900  pair 5,6
-const COLOR_SEG_LEFT_FOREARM        = Color(0.200, 0.600, 0.000)  # #339900  pair 6,7
-const COLOR_SEG_RIGHT_TORSO         = Color(0.000, 0.600, 0.000)  # #009900  pair 1,8
-const COLOR_SEG_RIGHT_UPPER_LEG     = Color(0.000, 0.600, 0.200)  # #009933  pair 8,9
-const COLOR_SEG_RIGHT_LOWER_LEG     = Color(0.000, 0.600, 0.400)  # #009966  pair 9,10
-const COLOR_SEG_LEFT_TORSO          = Color(0.000, 0.600, 0.600)  # #009999  pair 1,11
-const COLOR_SEG_LEFT_UPPER_LEG      = Color(0.000, 0.400, 0.600)  # #006699  pair 11,12
-const COLOR_SEG_LEFT_LOWER_LEG      = Color(0.000, 0.200, 0.600)  # #003399  pair 12,13
-const COLOR_SEG_HEAD                = Color(0.000, 0.000, 0.600)  # #000099  pair 1,0
+const COLOR_SEG_RIGHT_SHOULDERBLADE = Color("#990000")  # pair 1-2
+const COLOR_SEG_LEFT_SHOULDERBLADE  = Color("#993300")  # pair 1-5
+const COLOR_SEG_RIGHT_ARM           = Color("#996600")  # pair 2-3
+const COLOR_SEG_RIGHT_FOREARM       = Color("#999900")  # pair 3-4
+const COLOR_SEG_LEFT_ARM            = Color("#669900")  # pair 5-6
+const COLOR_SEG_LEFT_FOREARM        = Color("#339900")  # pair 6-7
+const COLOR_SEG_RIGHT_TORSO         = Color("#009900")  # pair 1-8
+const COLOR_SEG_RIGHT_UPPER_LEG     = Color("#009933")  # pair 8-9
+const COLOR_SEG_RIGHT_LOWER_LEG     = Color("#009966")  # pair 9-10
+const COLOR_SEG_LEFT_TORSO          = Color("#009999")  # pair 1-11
+const COLOR_SEG_LEFT_UPPER_LEG      = Color("#006699")  # pair 11-12
+const COLOR_SEG_LEFT_LOWER_LEG      = Color("#003399")  # pair 12-13
+const COLOR_SEG_HEAD                = Color("#000099")  # pair 1-0
 
 
 func all_joints() -> Array[Node2D]:
@@ -93,20 +90,31 @@ func _draw_skeleton():
 	var coloured_joints: Dictionary = joints_with_colors()
 	for joint in joints:
 		draw_circle(joint.position, joint_radius, coloured_joints[joint], true)
-	# now let's draw the segments
-	draw_line(head.position, neck.position, COLOR_SEG_HEAD, segment_width)
-	draw_line(neck.position, right_shoulder.position, COLOR_SEG_RIGHT_SHOULDERBLADE, segment_width)
-	draw_line(neck.position, left_shoulder.position, COLOR_SEG_LEFT_SHOULDERBLADE, segment_width)
-	draw_line(right_shoulder.position, right_elbow.position, COLOR_SEG_RIGHT_FOREARM, segment_width)
-	draw_line(left_shoulder.position, left_elbow.position, COLOR_SEG_LEFT_FOREARM, segment_width)
-	draw_line(right_elbow.position, right_hand.position, COLOR_SEG_RIGHT_ARM, segment_width)
-	draw_line(left_elbow.position, left_hand.position, COLOR_SEG_LEFT_ARM, segment_width)
-	draw_line(neck.position, right_hip.position, COLOR_SEG_RIGHT_TORSO, segment_width)
-	draw_line(neck.position, left_hip.position, COLOR_SEG_LEFT_TORSO, segment_width)
-	draw_line(right_hip.position, right_knee.position, COLOR_SEG_RIGHT_UPPER_LEG, segment_width)
-	draw_line(left_hip.position, left_knee.position, COLOR_SEG_LEFT_UPPER_LEG, segment_width)
-	draw_line(right_knee.position, right_foot.position, COLOR_SEG_RIGHT_LOWER_LEG, segment_width)
-	draw_line(left_knee.position, left_foot.position, COLOR_SEG_LEFT_LOWER_LEG, segment_width)
+
+	_draw_segment(head.position,          neck.position,         COLOR_SEG_HEAD)
+	_draw_segment(neck.position,          right_shoulder.position, COLOR_SEG_RIGHT_SHOULDERBLADE)
+	_draw_segment(neck.position,          left_shoulder.position,  COLOR_SEG_LEFT_SHOULDERBLADE)
+	_draw_segment(right_shoulder.position, right_elbow.position,  COLOR_SEG_RIGHT_FOREARM)
+	_draw_segment(left_shoulder.position,  left_elbow.position,   COLOR_SEG_LEFT_FOREARM)
+	_draw_segment(right_elbow.position,    right_hand.position,   COLOR_SEG_RIGHT_ARM)
+	_draw_segment(left_elbow.position,     left_hand.position,    COLOR_SEG_LEFT_ARM)
+	_draw_segment(neck.position,           right_hip.position,    COLOR_SEG_RIGHT_TORSO)
+	_draw_segment(neck.position,           left_hip.position,     COLOR_SEG_LEFT_TORSO)
+	_draw_segment(right_hip.position,      right_knee.position,   COLOR_SEG_RIGHT_UPPER_LEG)
+	_draw_segment(left_hip.position,       left_knee.position,    COLOR_SEG_LEFT_UPPER_LEG)
+	_draw_segment(right_knee.position,     right_foot.position,   COLOR_SEG_RIGHT_LOWER_LEG)
+	_draw_segment(left_knee.position,      left_foot.position,    COLOR_SEG_LEFT_LOWER_LEG)
+
+func _draw_segment(from: Vector2, to: Vector2, color: Color) -> void:
+	if draw_segments_as_ellipses:
+		var center = (from + to) / 2.0
+		var length = from.distance_to(to)
+		var angle = from.angle_to_point(to)
+		draw_set_transform(center, angle, Vector2.ONE)
+		draw_ellipse(Vector2.ZERO, length / 2.0, segment_width / 2.0, color)
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	else:
+		draw_line(from, to, color, segment_width)
 
 func _draw():
 	_draw_skeleton()
