@@ -1,8 +1,7 @@
 # Drawing utilities for tool scripts in the viewport or in-game visual debugging
 # Use sprites, SVG shapes, or meshes instead of drawing from the code whenever possible
 
-const ELIPSE_FILL: SphereMesh = preload("res://utils/draw/elipse.tres")
-const ELIPSE_OUTLINE: SphereMesh = preload("res://utils/draw/elipse_outline.tres")
+
 
 const DEFAULT_POINTS_COUNT : = 32
 
@@ -47,16 +46,16 @@ static func draw_arc(canvas_item: CanvasItem, center: Vector2, radius: float, st
 	canvas_item.draw_arc(center, radius, start_angle, end_angle, point_count, color, width)
 
 
-static func draw_elipse(canvas_item: CanvasItem, center: Vector2, radius: float, height: float, color := Color.WHITE, draw_outline := false, outline_width := 4.0, outline_color := Color.WHITE, elipse_path = ELIPSE_FILL.resource_path) -> void:
-	var elipse_mesh := load(elipse_path)
-	elipse_mesh.radius = radius * 0.5
-	elipse_mesh.height = height
-	var transform := Transform2D(Vector2.RIGHT, Vector2.DOWN, Vector2.ZERO)
+# static func draw_elipse(canvas_item: CanvasItem, center: Vector2, radius: float, height: float,elipse_path, elipse_outline, color := Color.WHITE, draw_outline := false, outline_width := 4.0, outline_color := Color.WHITE, ) -> void:
+# 	var elipse_mesh := load(elipse_path)
+# 	elipse_mesh.radius = radius * 0.5
+# 	elipse_mesh.height = height
+# 	var transform := Transform2D(Vector2.RIGHT, Vector2.DOWN, Vector2.ZERO)
 	
-	if draw_outline:
-		draw_elipse(canvas_item, center, radius + outline_width, height + outline_width, outline_color, false, outline_width, outline_color, ELIPSE_OUTLINE.resource_path)
+# 	if draw_outline:
+# 		draw_elipse(canvas_item, center, radius + outline_width, height + outline_width, outline_color, false, outline_width, outline_color, elipse_outline)
 	
-	canvas_item.draw_mesh(elipse_mesh, null, null, transform, color)
+# 	canvas_item.draw_mesh(elipse_mesh, null, null, transform, color)
 
 
 static func draw_grid(canvas_item: CanvasItem, grid_origin: Vector2, cell_size: Vector2, cell_amount: Vector2, width: float, color := Color.WHITE) -> void:
