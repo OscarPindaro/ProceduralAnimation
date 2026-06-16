@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b0xe10q618n4w"]
+
+[ext_resource type="Script" uid="uid://cpuqkbt3b77ln" path="res://scenes/Shapes/triangle.gd" id="1_idvkf"]
+
+[node name="Triangle" type="Node2D" unique_id=2003399646]
+script = ExtResource("1_idvkf")
+show_control_points = true
+metadata/_custom_type_script = "uid://cpuqkbt3b77ln"
+
+[node name="A" type="Node2D" parent="." unique_id=628232979]
+position = Vector2(3.535134e-16, -5.773503)
+
+[node name="B" type="Node2D" parent="." unique_id=1174204999]
+position = Vector2(5, 2.8867514)
+
+[node name="C" type="Node2D" parent="." unique_id=2133615500]
+position = Vector2(-5, 2.8867514)
