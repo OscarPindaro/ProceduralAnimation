@@ -15,8 +15,10 @@ class_name Skeleton
 @export_group("Rendering")
 @export var body_color: Color = Color("#134fff")
 @export var head_color: Color = Color("#82adfe")
+@export_subgroup("Outline")
 @export var outline_color: Color = Color("#000000")
 @export var outline_thickness: float = 5.0
+@export var outline_antialiased: bool = true
 
 @export_group("Body")
 @export_range(0, 30, 1.0, "Thickness of shoulders") var shoulder_thickness: float = 10.
@@ -230,9 +232,63 @@ func _draw_torso():
 
 func _draw_head():
 	var radius: float = neck.position.distance_to(head.position)/2
-	var center: Vector2 = (neck.position + head.position) / 2
+	var center: Vector2 = head.position
 	draw_circle(center, radius, head_color)
 
+func _draw_outline() -> void:
+	var arm_length_r: float = right_shoulder.position.distance_to(right_elbow.position) + right_elbow.position.distance_to(right_hand.position)
+	var elbow_t_r: float = right_shoulder.position.distance_to(right_elbow.position) / arm_length_r
+	var elbow_thickness_r: float = lerpf(shoulder_thickness, 0.0, elbow_t_r)
+
+	var arm_length_l: float = left_shoulder.position.distance_to(left_elbow.position) + left_elbow.position.distance_to(left_hand.position)
+	var elbow_t_l: float = left_shoulder.position.distance_to(left_elbow.position) / arm_length_l
+	var elbow_thickness_l: float = lerpf(shoulder_thickness, 0.0, elbow_t_l)
+
+	var leg_length_r: float = right_hip.position.distance_to(right_knee.position) + right_knee.position.distance_to(right_foot.position)
+	var knee_t_r: float = right_hip.position.distance_to(right_knee.position) / leg_length_r
+	var knee_thickness_r: float = lerpf(legs_thickness, 0.0, knee_t_r)
+
+	var leg_length_l: float = left_hip.position.distance_to(left_knee.position) + left_knee.position.distance_to(left_foot.position)
+	var knee_t_l: float = left_hip.position.distance_to(left_knee.position) / leg_length_l
+	var knee_thickness_l: float = lerpf(legs_thickness, 0.0, knee_t_l)
+
+	# shoulder points
+	var rsp = _joint_points(neck, right_shoulder, right_elbow, shoulder_thickness)
+	var lsp = _joint_points(neck, left_shoulder, left_elbow, shoulder_thickness)
+	# elbow points
+	var rep = _joint_points(right_shoulder, right_elbow, right_hand, elbow_thickness_r)
+	var lep = _joint_points(left_shoulder, left_elbow, left_hand, elbow_thickness_l)
+	# hip points
+	var hp = _hip_points()
+	var hip_mid = (hp[0] + hp[1]) / 2.0
+	# knee points
+	var rkp = _joint_points(right_hip, right_knee, right_foot, knee_thickness_r)
+	var lkp = _joint_points(left_hip, left_knee, left_foot, knee_thickness_l)
+
+	# right arm: [1] is outer, [0] is inner
+	# left arm:  [0] is outer, [1] is inner
+	# right leg: [1] is outer, [0] is inner (flipped)
+	# left leg:  [0] is outer, [1] is inner
+	var points = PackedVector2Array([
+		# right shoulder outer -> right elbow outer -> right hand -> right elbow inner -> right shoulder inner
+		rsp[0], rep[0], right_hand.position, rep[1], rsp[1],
+		# right hip outer
+		hp[0],
+		# right knee outer -> right foot -> right knee inner
+		rkp[0], right_foot.position, rkp[1],
+		# pube center
+		pube.position,
+		# left knee inner -> left foot -> left knee outer
+		lkp[0], left_foot.position, lkp[1],
+		# left hip outer
+		hp[1],
+		# left shoulder inner -> left elbow inner -> left hand -> left elbow outer -> left shoulder outer
+		lsp[0], lep[0], left_hand.position, lep[1], lsp[1],
+		# close
+		rsp[0],
+	])
+
+	draw_polyline(points, outline_color, outline_thickness, outline_antialiased)  # true = antialiased
 
 
 
@@ -244,11 +300,12 @@ func _simple_render():
 	var hip_mid = (hp[0] + hp[1]) / 2.0
 	_draw_leg(right_hip, right_knee, right_foot, hp[0], hip_mid)
 	_draw_leg(left_hip, left_knee, left_foot, hp[1], hip_mid, true)
+	_draw_outline()
 	_draw_head()
 
 func _draw():
-	_draw_skeleton()
 	_simple_render()
+	_draw_skeleton()
 
 	
 

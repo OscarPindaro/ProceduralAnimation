@@ -4,13 +4,12 @@
 
 [node name="Skeleton" type="Node2D" unique_id=680873750]
 script = ExtResource("1_tiyed")
-joint_radius = 7.0
-segment_width = 5.0
+joint_radius = 3.0
 draw_segments_as_ellipses = true
 body_color = Color(0.07274025, 0.3105249, 0.99999493, 1)
 head_color = Color(0.5096179, 0.6774812, 0.99549526, 1)
-shoulder_thickness = 20.0
-hips_thickness = 20.0
+outline_thickness = 3.0
+hips_thickness = 15.0
 legs_thickness = 20.0
 metadata/_edit_lock_ = true
 
@@ -22,7 +21,7 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 30)
 
 [node name="LeftShoulder" type="Node2D" parent="Joints" unique_id=1274720705]
-position = Vector2(30, 30)
+position = Vector2(25, 30)
 
 [node name="LeftElbow" type="Node2D" parent="Joints" unique_id=2142063420]
 position = Vector2(30, 65)
@@ -31,7 +30,7 @@ position = Vector2(30, 65)
 position = Vector2(30, 100)
 
 [node name="RightShoulder" type="Node2D" parent="Joints" unique_id=155079694]
-position = Vector2(-30, 30)
+position = Vector2(-25, 30)
 
 [node name="RightElbow" type="Node2D" parent="Joints" unique_id=432267669]
 position = Vector2(-30, 65)
@@ -40,7 +39,7 @@ position = Vector2(-30, 65)
 position = Vector2(-30, 100)
 
 [node name="LeftHip" type="Node2D" parent="Joints" unique_id=1026478870]
-position = Vector2(17, 107)
+position = Vector2(13, 107)
 
 [node name="LeftKnee" type="Node2D" parent="Joints" unique_id=1155573637]
 position = Vector2(17, 142)
@@ -49,7 +48,7 @@ position = Vector2(17, 142)
 position = Vector2(17, 177)
 
 [node name="RightHip" type="Node2D" parent="Joints" unique_id=71416142]
-position = Vector2(-17, 107)
+position = Vector2(-13, 107)
 
 [node name="RightKnee" type="Node2D" parent="Joints" unique_id=1880081685]
 position = Vector2(-26, 142)
