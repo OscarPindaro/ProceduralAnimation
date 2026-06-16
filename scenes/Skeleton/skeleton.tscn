@@ -7,10 +7,14 @@ script = ExtResource("1_tiyed")
 joint_radius = 7.0
 segment_width = 5.0
 draw_segments_as_ellipses = true
+body_color = Color(0.07274025, 0.3105249, 0.99999493, 1)
+head_color = Color(0.5096179, 0.6774812, 0.99549526, 1)
+shoulder_thickness = 20.0
+hips_thickness = 20.0
+legs_thickness = 20.0
 metadata/_edit_lock_ = true
 
 [node name="Joints" type="Node2D" parent="." unique_id=1153939439]
-metadata/_edit_group_ = true
 
 [node name="Head" type="Node2D" parent="Joints" unique_id=1321413219]
 
@@ -48,11 +52,14 @@ position = Vector2(17, 177)
 position = Vector2(-17, 107)
 
 [node name="RightKnee" type="Node2D" parent="Joints" unique_id=1880081685]
-position = Vector2(-16, 142)
+position = Vector2(-26, 142)
 
 [node name="RightFoot" type="Node2D" parent="Joints" unique_id=1111180315]
-position = Vector2(-17, 177)
+position = Vector2(-37, 177)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=724248063]
 position = Vector2(0, 100)
 zoom = Vector2(2, 2)
+
+[node name="Pube" type="Node2D" parent="." unique_id=526935213]
+position = Vector2(0, 107)
