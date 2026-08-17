@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://23iumsgkjx24"]
+
+[ext_resource type="Script" uid="uid://bec10qbp3m2ag" path="res://scenes/Shapes/AnchorPoint.gd" id="1_w3v3n"]
+
+[node name="Node2D" type="Node2D" unique_id=515234524]
+
+[node name="AnchorPoint" type="Node2D" parent="." unique_id=80585463]
+position = Vector2(-82.11148, -16.877113)
+script = ExtResource("1_w3v3n")
+metadata/_custom_type_script = "uid://bec10qbp3m2ag"

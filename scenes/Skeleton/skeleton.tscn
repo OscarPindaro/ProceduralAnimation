@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cs3o3lygxlrwh"]
 
 [ext_resource type="Script" uid="uid://brwhvaoh00n8n" path="res://scenes/Skeleton/skeleton.gd" id="1_tiyed"]
+[ext_resource type="PackedScene" uid="uid://b0xe10q618n4w" path="res://triangle.tscn" id="2_dsihs"]
 
 [node name="Skeleton" type="Node2D" unique_id=680873750]
 script = ExtResource("1_tiyed")
@@ -62,3 +63,5 @@ zoom = Vector2(2, 2)
 
 [node name="Pube" type="Node2D" parent="." unique_id=526935213]
 position = Vector2(0, 107)
+
+[node name="Triangle" parent="." unique_id=2003399646 instance=ExtResource("2_dsihs")]

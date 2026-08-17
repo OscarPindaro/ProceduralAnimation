@@ -1,3 +1,4 @@
 {
-    "godotTools.editorPath.godot4": ""
+    "godotTools.editorPath.godot4": "/home/oscar/.local/bin/godot",
+    "godotTools.lsp.serverPort": 6005
 }
