@@ -7,6 +7,7 @@ When creating nodes, use the gli MCP, since it offers deterministic tools to che
 ## Very Important, NEVER Forget
 Be concise when talking and writing code.
 Every additional line of code is a liability, so don't overengineer stuff.
+Methods should have a documentation line that explains what the method does
 
 ## Example Script
 

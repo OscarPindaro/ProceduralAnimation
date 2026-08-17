@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dl8twtv0q2ol5"]
+
+[ext_resource type="Script" uid="uid://l7gsqqn8122e" path="res://scenes/Shapes/triangle.gd" id="1_0wo4f"]
+[ext_resource type="Script" uid="uid://b5ocl6n2015b5" path="res://scenes/Shapes/point.gd" id="1_w7qsj"]
+[ext_resource type="Script" uid="uid://bhighqfo0oncl" path="res://scenes/Shapes/circle.gd" id="2_dgmen"]
+[ext_resource type="Script" uid="uid://cepluiy6mij0k" path="res://scenes/Shapes/vector_object.gd" id="4_aer8v"]
+
+[node name="AllShapes" type="Node2D" unique_id=403402838]
+
+[node name="Triangle" type="Node2D" parent="." unique_id=556687814]
+position = Vector2(64, 51)
+script = ExtResource("1_0wo4f")
+radius = 30.0
+points = PackedVector2Array(0, -30, 25.980762, 15.000002, -25.980762, 14.999997)
+icolor = Color(0.2776127, 0.22430795, 1, 1)
+ocolor = Color(0.33845967, 0.45103043, 1, 1)
+border = 1.0
+
+[node name="Point" type="Node2D" parent="." unique_id=1991642631]
+position = Vector2(27, 16)
+script = ExtResource("1_w7qsj")
+radius = 10.0
+border = 1.0
+metadata/_custom_type_script = "uid://b5ocl6n2015b5"
+
+[node name="Circle" type="Node2D" parent="." unique_id=376022462]
+position = Vector2(113, 33)
+script = ExtResource("2_dgmen")
+icolor = Color(0.7760417, 0.13944499, 0.13944499, 1)
+ocolor = Color(0.5677084, 0.18554655, 0.2537073, 1)
+radius = 20.0
+border = 2.0
+
+[node name="VectorObject" type="Node2D" parent="." unique_id=1377079785]
+position = Vector2(235, 106)
+script = ExtResource("4_aer8v")
+points = PackedVector2Array(67.585785, 0.41942906, 31.224382, 54.666504, -30.16041, 114.567856, -55.843616, 25.585033, -49.094604, -17.298304, -12.485025, -83.37357, 79.90345, -70.29852)
+border = 3.0
+metadata/_custom_type_script = "uid://cepluiy6mij0k"
