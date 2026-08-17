@@ -2,7 +2,9 @@
 class_name Polygon
 extends VectorObject
 
-func randomize_points() -> void:
+@export_tool_button("Randomize", "Callable") var randomize_action: Callable = Callable(self, &"randomize_shape")
+
+func randomize_shape() -> void:
     var rng := RandomNumberGenerator.new()
     rng.randomize()
 

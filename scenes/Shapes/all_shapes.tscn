@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://l7gsqqn8122e" path="res://scenes/Shapes/triangle.gd" id="1_0wo4f"]
 [ext_resource type="Script" uid="uid://b5ocl6n2015b5" path="res://scenes/Shapes/point.gd" id="1_w7qsj"]
 [ext_resource type="Script" uid="uid://bhighqfo0oncl" path="res://scenes/Shapes/circle.gd" id="2_dgmen"]
-[ext_resource type="Script" uid="uid://cepluiy6mij0k" path="res://scenes/Shapes/vector_object.gd" id="4_aer8v"]
+[ext_resource type="Script" uid="uid://c6myd3cfqnfi8" path="res://scenes/Shapes/regular_polygon.gd" id="4_aer8v"]
+[ext_resource type="Script" uid="uid://vwnme1jg7n2g" path="res://scenes/Shapes/polygon.gd" id="5_dhfeh"]
 
 [node name="AllShapes" type="Node2D" unique_id=403402838]
 
@@ -31,9 +32,21 @@ ocolor = Color(0.5677084, 0.18554655, 0.2537073, 1)
 radius = 20.0
 border = 2.0
 
-[node name="VectorObject" type="Node2D" parent="." unique_id=1377079785]
-position = Vector2(235, 106)
+[node name="RegularPolygon" type="Node2D" parent="." unique_id=82441831]
+position = Vector2(119, 209)
 script = ExtResource("4_aer8v")
-points = PackedVector2Array(67.585785, 0.41942906, 31.224382, 54.666504, -30.16041, 114.567856, -55.843616, 25.585033, -49.094604, -17.298304, -12.485025, -83.37357, 79.90345, -70.29852)
+sides = 10
+radius = 41.44259
+start_angle = 6.195305
+points = PackedVector2Array(41.28266, -3.6373067, 35.536335, 21.32269, 16.216326, 38.138153, -9.297752, 40.386135, -31.260422, 27.207981, -41.28266, 3.6372933, -35.53634, -21.322685, -16.216333, -38.138153, 9.297766, -40.386135, 31.260431, -27.20797)
+icolor = Color(1, 0.59063894, 0.2334544, 1)
+ocolor = Color(0.39111853, 0.35165876, 0.7291666, 1)
 border = 3.0
-metadata/_custom_type_script = "uid://cepluiy6mij0k"
+metadata/_custom_type_script = "uid://c6myd3cfqnfi8"
+
+[node name="Polygon" type="Node2D" parent="." unique_id=43962785]
+position = Vector2(278, 98)
+script = ExtResource("5_dhfeh")
+points = PackedVector2Array(106.472855, -11.17679, 44.134525, 43.129078, -10.563081, 54.619858, -84.06099, 39.908524, -100.149345, -26.349714, -17.39945, -78.02044, 62.762142, -94.97008)
+icolor = Color(1, 0.41537255, 0.39547426, 1)
+metadata/_custom_type_script = "uid://vwnme1jg7n2g"

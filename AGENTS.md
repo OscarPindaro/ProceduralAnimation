@@ -398,3 +398,8 @@ A plugin that manipulates 2D viewport objects generally implements these `Editor
 Mutate scene nodes through `get_undo_redo()` rather than assigning properties directly. This makes edits undoable and marks the scene dirty so Godot prompts to save. Merge continuous edits (like a drag) into one history entry with `UndoRedo.MERGE_ENDS`.
 
 Access the edited scene with `EditorInterface.get_edited_scene_root()` and the selection with `EditorInterface.get_selection()`.
+
+## How to Test
+For complex cases, or when debugging with a user, you can create a sample scene, instantiate what you need, and then look at eventual logs and errors on the godot command that you will use to run the scene / script.
+
+Sometimes you will be asked to do interactived testing: you will put some meaningful logs, open the scene with godot, ask the user to perform some operations, and then you will read the logs to undrstand what's happening.
